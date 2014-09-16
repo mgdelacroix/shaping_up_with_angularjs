@@ -12,4 +12,4 @@ html(ng-app='store')
     ul.list-group
       li.list-group-item(ng-repeat='product in store.products')
         h3 {{ product.name }}
-          em.pull-right ${{ product.price }}
+          em.pull-right {{ product.price | currency }}
