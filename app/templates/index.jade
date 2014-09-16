@@ -5,11 +5,12 @@ html(ng-app='store')
     title My angular's page
     link(type='text/css', rel='stylesheet', href='vendor/bootstrap/dist/css/bootstrap.min.css')
 
-  body
+  body(ng-controller='StoreController as store')
     script(type='text/javascript', src='vendor/angular/angular.min.js')
     script(type='text/javascript' src='lib/app.js')
 
-    div(ng-controller='StoreController as store')
-      h1 {{ store.product.name }}
-      h2 {{ store.product.price }}
-      p {{ store.product.description }}
+    div(ng-repeat='product in store.products')
+      h1 {{ product.name }}
+      h2 {{ product.price }}
+      p {{ product.description }}
+      button(ng-show='store.product.canPurchase') Add to Cart
