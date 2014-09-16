@@ -5,12 +5,12 @@ var gulp = require('gulp'),
         dist: 'dist/',
         templates: 'app/templates/**/*.jade',
         js: 'app/js/**/*.js',
-        jsDist: 'dist/js/',
+        jsDist: 'dist/lib/',
     };
 
 gulp.task('jade', function() {
     gulp.src(paths.templates)
-        .pipe(jade())
+        .pipe(jade({ pretty: true }))
         .pipe(gulp.dest(paths.dist))
 });
 
