@@ -8,5 +8,8 @@ html(ng-app='store')
   body
     script(type='text/javascript', src='vendor/angular/angular.min.js')
     script(type='text/javascript' src='lib/app.js')
-    h1 My angular's page
-    p Expression test: {{"hello" + " " + "you!"}}
+
+    div(ng-controller='StoreController as store')
+      h1 {{ store.product.name }}
+      h2 {{ store.product.price }}
+      p {{ store.product.description }}
