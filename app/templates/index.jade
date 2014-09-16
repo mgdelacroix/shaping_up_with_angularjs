@@ -9,8 +9,7 @@ html(ng-app='store')
     script(type='text/javascript', src='vendor/angular/angular.min.js')
     script(type='text/javascript' src='lib/app.js')
 
-    div(ng-repeat='product in store.products')
-      h1 {{ product.name }}
-      h2 {{ product.price }}
-      p {{ product.description }}
-      button(ng-show='store.product.canPurchase') Add to Cart
+    ul.list-group
+      li.list-group-item(ng-repeat='product in store.products')
+        h3 {{ product.name }}
+          em.pull-right ${{ product.price }}
