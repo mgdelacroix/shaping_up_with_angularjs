@@ -6,6 +6,8 @@ var gulp = require('gulp'),
         templates: 'app/templates/**/*.jade',
         js: 'app/js/**/*.js',
         jsDist: 'dist/lib/',
+        vendor: 'app/vendor/**/*',
+        vendorDist: 'dist/vendor/'
     };
 
 gulp.task('jade', function() {
@@ -20,13 +22,20 @@ gulp.task('js', function() {
 });
 
 gulp.task('clean', function() {
-    gulp.src(['dist/*.html', paths.jsDist])
+    gulp.src(paths.dist)
         .pipe(clean({ read: false }))
 });
 
-gulp.task('deploy', ['jade', 'js']);
+gulp.task('deploy', ['copyVendor', 'jade', 'js']);
 
-gulp.task('default', ['deploy'], function() {
-    gulp.watch(paths.templates, ['jade']);
-    gulp.watch(paths.js, ['js']);
+gulp.task('copyVendor', function() {
+    gulp.src(paths.vendor)
+        .pipe(gulp.dest(paths.vendorDist))
 });
+
+gulp.task('watch', function() {
+    gulp.watch(paths.templates, ['jade']);
+    gulp.watch(paths.js, ['js'])
+});
+
+gulp.task('default', ['deploy', 'watch']);
